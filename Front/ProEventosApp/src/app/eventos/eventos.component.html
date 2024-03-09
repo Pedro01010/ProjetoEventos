@@ -1,0 +1,50 @@
+<h1>Eventos</h1>
+<hr>
+<div class="form-group mb-2">
+  <label class="me-2">Filtro: </label>
+  <input type="text" class="form form-inline mb-3 rounded-3" placeholder="Buscar" [(ngModel)]="filtroLista" (input)="FiltroLista() ">
+
+</div>
+
+
+<table class=" table table-stripped ">
+  <thead class="table-dark">
+    <tr>
+      <th ><button type="button" class="btn btn-light btn-sm" (click)="AlterarImagem() ">{{mostrarImagem ? 'Ocultar' : 'Mostrar'}}</button></th>
+      <th>#</th>
+      <th>Tema</th>
+      <th>Local</th>
+      <th>Data</th>
+      <th>Quantidade de Pessoas</th>
+      <th>Lote</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="eventos && eventos.length">
+     <tr *ngFor="let evento of eventos">
+      <td><img class="rounded-3"
+           [collapse]="!mostrarImagem"
+           [isAnimated]="true"
+            src="../../assets/img/{{evento.imagemURL}}" alt=""
+            [style.width.px]="larguraImagem"
+            [style.margin.px]="marginImagem"></td>
+      <td>{{evento.eventoID}}</td>
+      <td>{{evento.tema}}</td>
+      <td>{{evento.local}}</td>
+      <td>{{evento.dataEvento}}</td>
+      <td>{{evento.qtdPessoas}}</td>
+      <td>{{evento.lote}}</td>
+      <td>
+        <button class="btn btn-primary btn-sm me-2">Editar</button>
+        <button class="btn btn-primary btn-sm">Excluir</button></td>
+    </tr>
+  </tbody>
+
+   <tfoot *ngIf="!eventos.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Nenhum Evento encontrado!</h4>
+      </td>
+    </tr>
+   </tfoot>
+</table>
